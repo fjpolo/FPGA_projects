@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Define paths
-TESTBENCH="testbench.v"
-RTL_MODULE="${PWD}/../../../../rtl/maze.v"
+TESTBENCH="tb_maze_solver.v"
+RTL_MODULE="${PWD}/../../../../rtl/maze_solver.v"
+ENV_MODULE="spiral_maze_env.v"
 OUTPUT="testbench"
 WAVEFORM="dump.vcd"
 
@@ -21,7 +22,7 @@ fi
 
 # Compile the testbench and RTL module
 echo "        [ICARUS] Compiling testbench and RTL module..."
-iverilog -o "$OUTPUT" "$TESTBENCH" "$RTL_MODULE"
+iverilog -o "$OUTPUT" "$TESTBENCH" "$RTL_MODULE" "$ENV_MODULE"
 
 # Check if compilation was successful
 if [ $? -ne 0 ]; then
